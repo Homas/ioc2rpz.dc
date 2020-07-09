@@ -2,25 +2,25 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
 ## Overview
-Easily run ioc2rpz, ioc2rpz.gui on Docker with Docker Compose.
+Easily run ioc2rpz, ioc2rpz.gui on Docker with Docker Compose. ioc2rpz is shipped with preconfigured RPZ feeds based on open source threat intelligence (OSINT).
 
 ## Prerequisites
-- no services running on ports 53/udp, 53/tcp, 853/tcp, 80/tcp, 443/tcp, 8443/tcp
+- ioc2rpz and ioc2rpz.gui use tthe following ports: 53/udp, 53/tcp, 853/tcp, 80/tcp, 443/tcp, 8443/tcp. Ensure that no any other services are using these ports.
 - recent releases Docker and Docker Compose
 
 ## Configuration
+Clone the repository to a directory where you want to deploy the service. During the first service start ioc2rpz.gui startup script will create the following directories with the following content:
+- ioc2rpz/cfg - ioc2rpz configuration file, a sample whitelist and a temporary ssl certificate and a key;
+- ioc2rpz/db - configuration database;
+- ioc2rpz/ssl - certificates for ioc2rpz.gui.
 
-## Start service
+## Start ioc2rpz service
+To start the service execute the following command:
+```
+sudo docker-compose up -d
+```
 
-```
-docker-compose up
-```
-
-## Cleanup
-
-```
-docker-compose down
-```
+Refer the docker compose documentation to learn how to restart, stop the service and cleanup.
 
 # Do you want to support to the project?
 You can suppor the project via [GitHub Sponsor](https://github.com/sponsors/Homas) (recurring payments) or make one time donation via [PayPal](https://paypal.me/ioc2rpz).
