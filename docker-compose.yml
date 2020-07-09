@@ -1,0 +1,33 @@
+version: '3'
+services:
+  ioc2rpz:
+    build:
+      context: https://github.com/Homas/ioc2rpz.git#dev
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "853:853/tcp"
+      - "8443:8443/tcp"
+    volumes:
+      - ./ioc2rpz/cfg:/opt/ioc2rpz/cfg
+      - ./ioc2rpz/db:/opt/ioc2rpz/db
+    restart: always
+    logging:
+      driver: syslog
+    network_mode: "bridge"
+    depends_on:
+      - ioc2rpz.gui
+  ioc2rpz.gui:
+    build:
+      context: https://github.com/Homas/ioc2rpz.gui.git#dev
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    volumes:
+      - ./ioc2rpz/cfg:/opt/ioc2rpz.gui/export-cfg
+      - ./ioc2rpz/db:/opt/ioc2rpz.gui/www/io2cfg
+      - ./ioc2rpz/ssl:/etc/apache2/ssl
+    restart: always
+    logging:
+      driver: syslog
+    network_mode: "bridge"
