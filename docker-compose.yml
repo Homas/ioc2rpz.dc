@@ -2,7 +2,7 @@ version: '3'
 services:
   ioc2rpz:
     build:
-      context: https://github.com/Homas/ioc2rpz.git#dev
+      context: https://github.com/Homas/ioc2rpz.git
     ports:
       - "53:53/udp"
       - "53:53/tcp"
@@ -19,7 +19,7 @@ services:
       - ioc2rpz.gui
   ioc2rpz.gui:
     build:
-      context: https://github.com/Homas/ioc2rpz.gui.git#dev
+      context: https://github.com/Homas/ioc2rpz.gui.git
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
